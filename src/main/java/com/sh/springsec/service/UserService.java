@@ -26,9 +26,12 @@ public class UserService implements UserDetailsService {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         userDto.setPassword(encoder.encode(userDto.getPassword()));
 
-        return userRepository.save(User.builder()
+        return userRepository.save(
+                User.builder()
                 .email(userDto.getEmail())
                 .auth(userDto.getAuth())
-                .password(userDto.getPassword()).build()).getCode();
+                .password(userDto.getPassword())
+                .build()).
+                getCode();
     }
 }
